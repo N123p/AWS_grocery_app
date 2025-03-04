@@ -1,11 +1,11 @@
 variable "aws_region" {
   description = "AWS region"
-  default     = "us-east-1"  # Ensure this matches your AWS region
+  default     = "us-east-1"
 }
 
 variable "aws_availability_zone" {
   description = "AWS availability zone"
-  default     = "us-east-1a"  # Updated to match AWS region
+  default     = "us-east-1a"
 }
 
 variable "ami_id" {
