@@ -10,7 +10,7 @@ variable "aws_availability_zone" {
 
 variable "ami_id" {
   description = "Amazon Machine Image ID"
-  default     = "ami-05b10e08d247fb927"
+  type        = string
 }
 
 variable "instance_type" {
@@ -18,10 +18,20 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+variable "db_name" {
+  description = "Database name"
+  type        = string
+}
+
+variable "key_name" {
+  description = "SSH Key Pair Name for EC2"
+  type        = string
+}
+
 variable "db_username" {
   description = "Username for the RDS database"
   type        = string
-  default     = "myadmin"
+
 }
 
 
@@ -30,8 +40,14 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
 variable "profile" {
   description = "AWS profile name"
   type        = string
-  default     = "my_web_app_1"
+
+}
+
+variable "my_ip" {
+  description = "Your public IP for security group access"
+  type        = string
 }
