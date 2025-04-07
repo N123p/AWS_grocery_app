@@ -1,9 +1,9 @@
-📑 Table of Contents
+📑 Table of Contents:
 
 1.🚀 Project Overview
 2. 🖼️ Architecture Diagram
 3.🧰 Overview of Used AWS Services
-⚙️ Terraform Configuration Overview
+4.⚙️ Terraform Configuration Overview
 
 🚀 Project Overview:
 
@@ -42,6 +42,43 @@ For details about the application's features, functionality, and local installat
     Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
 
 4. ⚙️ Terraform Configuration Overview:
+    infrastructure/
+├── main.tf                  # Root configuration - calls all the modules
+├── variables.tf             # Input variables used across modules
+├── outputs.tf               # Outputs from modules (e.g., ALB DNS, RDS endpoint)
+├── terraform.tfvars         # Values assigned to variables (optional)
+│
+└── modules/
+    ├── ec2_launch_template/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    ├── alb/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    ├── security_groups/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    ├── vpc/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    ├── rds/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    └── s3_bucket/
+        ├── main.tf
+        ├── variables.tf
+        └── outputs.tf
+
 
 
 
