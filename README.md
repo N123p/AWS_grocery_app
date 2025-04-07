@@ -42,7 +42,9 @@ For details about the application's features, functionality, and local installat
     Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
 
 4. ⚙️ Terraform Configuration Overview:
-    ![image](https://github.com/user-attachments/assets/c7e93461-e891-4192-b1a2-3405d6229e67)
+
+
+   ![image](https://github.com/user-attachments/assets/c7e93461-e891-4192-b1a2-3405d6229e67)
 
 
 
