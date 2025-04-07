@@ -1,14 +1,43 @@
-output "ec2_instance_public_ip" {
-  description = "Public IP of the EC2 instance"
-  value       = aws_instance.web.public_ip
+output "vpc_id" {
+  value = module.vpc.vpc_id
 }
 
+output "public_subnet_id" {
+  value = module.vpc.public_subnet_ids[0]  # Get the first public subnet
+}
+
+output "ec2_instance_id" {
+  value = module.ec2_launch_template.instance_id
+}
+
+output "security_group_id" {
+  value = module.security_groups.ec2_security_group_id
+}
 output "rds_endpoint" {
-  description = "RDS database endpoint"
-  value       = aws_db_instance.rds.endpoint
+  description = "The endpoint of the RDS instance"
+  value       = module.rds.rds_endpoint
 }
 
-output "s3_bucket_name" {
-  description = "The name of the created S3 bucket"
-  value       = aws_s3_bucket.avatars.id
+output "rds_instance_id" {
+  description = "The ID of the RDS instance"
+  value       = module.rds.rds_id
 }
+
+output "bucket_name" {
+  value       = module.s3_bucket.bucket_name
+  description = "The name of the S3 bucket"
+}
+
+output "bucket_id" {
+  value       = module.s3_bucket.bucket_id
+  description = "The ID of the created S3 bucket."
+}
+
+output "bucket_arn" {
+  value       = module.s3_bucket.bucket_arn
+  description = "The ARN of the created S3 bucket."
+}
+
+
+
+

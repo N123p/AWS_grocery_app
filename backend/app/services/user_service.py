@@ -20,7 +20,7 @@ S3_BUCKET = os.getenv('S3_BUCKET_NAME')
 S3_REGION = os.getenv('S3_REGION')
 USE_S3_STORAGE = os.getenv("USE_S3_STORAGE", "false").lower() == "true"
 DEFAULT_AVATAR = 'user_default.png'
-DEFAULT_AVATAR_S3_URL = f"https://{S3_BUCKET}.s3.{S3_REGION}.amazonaws.com/avatars/{DEFAULT_AVATAR}"
+DEFAULT_AVATAR_S3_URL = f"https://{S3_BUCKET}.s3_bucket.{S3_REGION}.amazonaws.com/avatars/{DEFAULT_AVATAR}"
 DEFAULT_AVATAR_LOCAL_PATH = os.path.join(UPLOAD_FOLDER, DEFAULT_AVATAR)
 
 
@@ -40,9 +40,9 @@ def get_s3_client():
     if USE_S3_STORAGE:
         if is_ec2_instance():
             session = boto3.Session()
-            return session.client('s3', region_name=S3_REGION)
+            return session.client('s3_bucket', region_name=S3_REGION)
         return boto3.client(
-                's3',
+                's3_bucket',
                 region_name=S3_REGION,
                 aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
                 aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
@@ -60,7 +60,7 @@ def get_avatar_url(user):
     Now returns API URLs for both S3 and local storage.
     """
     if USE_S3_STORAGE:
-        if user.avatar and user.avatar.startswith(f"https://{S3_BUCKET}.s3"):
+        if user.avatar and user.avatar.startswith(f"https://{S3_BUCKET}.s3_bucket"):
             filename = user.avatar.split('/')[-1]
             return f"/api/me/avatar/{filename}"
         return f"/api/me/avatar/{DEFAULT_AVATAR}"
@@ -421,7 +421,7 @@ def save_avatar(user_id, file):
                 f"avatars/{filename}",
                 ExtraArgs={'ContentType': file.content_type}
             )
-            user.avatar = f"https://{S3_BUCKET}.s3.{S3_REGION}.amazonaws.com/avatars/{filename}"
+            user.avatar = f"https://{S3_BUCKET}.s3_bucket.{S3_REGION}.amazonaws.com/avatars/{filename}"
             db.session.commit()
             current_app.logger.info(f"Avatar for user {user_id} uploaded to S3 as {filename}.")
             return {"message": "Avatar uploaded successfully", "avatar_url": get_avatar_url(user)}
