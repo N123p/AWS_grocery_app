@@ -42,42 +42,7 @@ For details about the application's features, functionality, and local installat
     Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
 
 4. ⚙️ Terraform Configuration Overview:
-    infrastructure/
-├── main.tf                  # Root configuration - calls all the modules
-├── variables.tf             # Input variables used across modules
-├── outputs.tf               # Outputs from modules (e.g., ALB DNS, RDS endpoint)
-├── terraform.tfvars         # Values assigned to variables (optional)
-│
-└── modules/
-    ├── ec2_launch_template/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    ├── alb/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    ├── security_groups/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    ├── vpc/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    ├── rds/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    └── s3_bucket/
-        ├── main.tf
-        ├── variables.tf
-        └── outputs.tf
+    ![image](https://github.com/user-attachments/assets/c7e93461-e891-4192-b1a2-3405d6229e67)
 
 
 
