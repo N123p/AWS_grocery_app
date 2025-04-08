@@ -38,6 +38,15 @@ output "bucket_arn" {
   description = "The ARN of the created S3 bucket."
 }
 
+output "alb_security_group_id" {
+  value       = module.security_groups.alb_security_group_id
+  description = "The ID of the ALB security group."
+}
+
+output "alb_dns_name" {
+  value       = module.alb.alb_dns_name
+  description = "The DNS name of the Application Load Balancer."
+}
 
 
 

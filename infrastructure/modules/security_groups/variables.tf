@@ -14,4 +14,7 @@ variable "name" {
   default     = "rds-postgres-sg"
 }
 
-
+variable "alb_ingress_ports" {
+  description = "Ports for the ALB security group ingress"
+  type        = list(number)
+}

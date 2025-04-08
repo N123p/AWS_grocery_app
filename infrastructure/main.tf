@@ -20,6 +20,7 @@ module "security_groups" {
   vpc_id            = module.vpc.vpc_id  # Correctly using vpc_id from the VPC module
   allowed_ips       = var.allowed_ips
   name              = "rds-postgres-security-group"
+  alb_ingress_ports = [80, 443]
 
 }
 
@@ -75,4 +76,15 @@ module "s3_bucket" {
   db_dump_prefix          = "db_backups/"
   db_dump_filename        = "sqlite_dump_clean.sql"
   db_dump_path            = "../backend/app/sqlite_dump_clean.sql"
+}
+
+module "alb" {
+  source                = "./modules/alb"
+  alb_name              = "grocery-alb"
+  alb_security_group_id = module.security_groups.alb_security_group_id
+  public_subnet_ids     = module.vpc.public_subnet_ids
+  target_group_name     = "grocery-alb-tg"
+  target_group_port     = 5000
+  vpc_id                = module.vpc.vpc_id
+  health_check_path     = "/health"
 }
