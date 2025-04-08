@@ -80,14 +80,19 @@ For details about the application's features, functionality, and local installat
 
 ## 5. 🏗️ Infrastructure Components:
 
-### 🌐 **VPC:**
-  -Location: modules/vpc
-  -Description: Defines the Virtual Private Cloud, subnets, route tables, and internet gateways.
-  -Key Resources:
-   -aws_vpc
-   -aws_subnet
-   -aws_internet_gateway
-   -aws_route_table
+### 🌐 VPC Module
+
+- **📁 Location:** `modules/vpc`  
+- **📝 Description:**  
+  Defines the **Virtual Private Cloud (VPC)** and associated networking resources including subnets, internet gateway, and route tables. This sets up the foundational network layer for your AWS infrastructure.
+
+- **🔑 Key Terraform Resources:**
+  - `aws_vpc`
+  - `aws_subnet`
+  - `aws_internet_gateway`
+  - `aws_route_table`
+  - `aws_route_table_association`
+
  
 
 
