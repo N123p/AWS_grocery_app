@@ -61,23 +61,6 @@ For details about the application's features, functionality, and local installat
 ---
 ## 4. ⚙️ Terraform Configuration Overview:
 
-terraform/
-│
-├── main.tf              # Root module wiring all other modules
-├── variables.tf         # Input variables
-├── outputs.tf           # Output values from root module
-├── terraform.tfvars     # Variable values used during plan/apply
-│
-└── modules/
-    ├── alb/
-    ├── security_groups/
-    ├── ec2_launch_template/
-    ├── rds/
-    ├── s3_bucket/
-    └── vpc/
----
-
-## 5. 🏗️ Infrastructure Components:
    ```bash
    terraform/
 ├── main.tf              # Root module wiring all other modules
@@ -93,14 +76,18 @@ terraform/
     └── vpc/             # VPC, subnets, IGW, route tables, etc.
 
    ```
-###  **🌐 VPC:**
+---
+
+## 5. 🏗️ Infrastructure Components:
+
+### 🌐 **VPC:**
   -Location: modules/vpc
   -Description: Defines the Virtual Private Cloud, subnets, route tables, and internet gateways.
   -Key Resources:
-  -aws_vpc
-  -aws_subnet
-  -aws_internet_gateway
-  -aws_route_table
+   -aws_vpc
+   -aws_subnet
+   -aws_internet_gateway
+   -aws_route_table
  
 
 
