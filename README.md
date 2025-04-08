@@ -1,211 +1,66 @@
-## Requirements
-To make this app work make sure you have this installed on your computer:
-- Python(use `pyenv` to install and manage compatible versions [3.12/3.11])
-- PostgreSQL
-- Node.js and npm
-- Git
+📑 Table of Contents:
 
-GroceryMate
+1.🚀 Project Overview
+2. 🖼️ Architecture Diagram
+3.🧰 Overview of Used AWS Services
+4.⚙️ Terraform Configuration Overview
 
+🚀 Project Overview:
 
-Overview
+This project is part of the Cloud Track in our Software Engineering bootcamp at Masterschool. The application was originally developed by Alejandro Román, our Track Mentor (A big Thanks to him!). Our task was to design and deploy its AWS infrastructure step by step, implementing each component individually.
 
-GroceryMate is a comprehensive e-commerce platform offering the following features:
+🌐 AWS Services Used:
+🖥️ EC2 Instance: Deployed virtual servers to run the application.
+🏢 Application Load Balancer (ALB): Ensured high availability and traffic distribution across instances.
+💾 RDS (Relational Database Service): Managed and scaled the database with ease.
+🗂️ S3 Bucket: Stored and managed static files for the application.
+🛡️ IAM Roles: Configured and attached IAM roles to securely manage permissions and access control for various AWS resources.
 
-    User Authentication: Register and login functionality.
-    Protected Routes: All the routes that need to be authenticated will redirect to /auth
-    Product Search: Search for products, sort them by price, and filter by categories.
-    Favorites: Add products to your favorites list.
-    Shopping Basket: Add products to your basket and manage them.
-    Check-out Process: Complete the checkout process with billing and shipping information, choose payment methods, and calculate the total price.
+Instead of a manual setup, I took the challenge further by fully automating the provisioning and deployment using Terraform. This approach ensures a scalable, repeatable, and error-resistant deployment process, eliminating the need for manual configurations.
 
-Features
+For details about the application's features, functionality, and local installation, refer to the original README.md by Alejandro.
 
-    Register, Login, and Logout: Secure user authentication system.
-    Product Search and Sorting: Search for products, and sort them by price or name in both ASC and DESC.
-    Product Category and Price Range: Get the product by categories or range of price
-    Favorites: Manage your favorite products.
-    Shopping Basket: Add products to your basket, view, and modify the contents.
-    Check-out Process:
-        Billing and Shipping Information
-        Payment Method Selection
-        Total Price Calculation
+2. 🖼️ Architecture Diagram:
+![image](https://github.com/user-attachments/assets/7c5fe55e-e6c9-482c-84a8-4a74bc18e0fb)
 
-Screenshots and videos
 
+3.🧰 Overview of Used AWS Services:
 
-![imagen](https://github.com/user-attachments/assets/ea039195-67a2-4bf2-9613-2ee1e666231a)
-![imagen](https://github.com/user-attachments/assets/a87e5c50-5a9e-45b8-ad16-2dbff41acd00)
-![imagen](https://github.com/user-attachments/assets/589aae62-67ef-4496-bd3b-772cd32ca386)
-![imagen](https://github.com/user-attachments/assets/2772b85e-81f7-446a-9296-4fdc2b652cb7)
+🖥️ Amazon EC2 (Elastic Compute Cloud):
+   Virtual servers to host and run the grocery web application. Scalable and flexible compute power.
+🌐 Application Load Balancer (ALB):
+   Distributes incoming HTTP(S) traffic across multiple EC2 instances to ensure high availability and fault tolerance.
+💾 Amazon RDS (Relational Database Service):
+  	Managed database service (e.g., PostgreSQL or MySQL) used to store structured app data such as users, orders, and inventory.
+🗂️ Amazon S3 (Simple Storage Service):
+   Object storage for static files, such as product images, frontend assets, and backups.
+🔐 IAM Roles (Identity & Access Management):
+   Provides temporary, secure, and scoped permissions for services like EC2 to access RDS or S3 without hardcoding credentials.
+🛡️ Security Groups (SG):
+   Acts as a virtual firewall for your EC2 instances to control inbound and outbound traffic based on defined rules.
+⚙️ Terraform (Infrastructure as Code):
+    Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
 
-https://github.com/user-attachments/assets/d1c5c8e4-5b16-486a-b709-4cf6e6cce6bc
+4. ⚙️ Terraform Configuration Overview:
 
 
+   ![image](https://github.com/user-attachments/assets/c7e93461-e891-4192-b1a2-3405d6229e67)
 
 
-Installation
 
-Follow these steps to set up the application locally.
-Create .env files in the backend and frontend, and follow the .env.examples to know what is required
 
-## Clone repository
 
-Clone the repository:
 
-    git clone --branch version1 https://github.com/AlejandroRomanIbanez/AWS_grocery.git
-    
 
-## Install pyenv and python (if you haven't yet)
 
 
-### On macOS/Linux:
 
-Follow the instructions [here](https://github.com/pyenv/pyenv-installer) to install pyenv
 
-### On Windows:
 
-Use pyenv-win, you can find it [here](https://github.com/pyenv-win/pyenv-win), follow the instructions to install it
 
-### Install Python with `pyenv` (if you don't have it on your machine yet)
 
-Install Python 3.12.x (or 3.11.x): 
 
-    pyenv install 3.12.1
 
-Check Python version now using:
 
-    python3 --version
 
-You should see the version you installed (e.g., `3.12.1`).
 
-## Continue with the project installation
-Open the project in your preferred IDE (e.g., PyCharm).
-
-Open the IDE terminal.
-
-Navigate to the backend folder:
-
-    cd backend
-
-Create a virtual environment: 
-
-    python3 -m venv venv
-
-Activate the virtual environment: 
- - On macOS/Linux: 
-
-
-    source venv/bin/activate  
-- On Windows use
-
-
-    venv\Scripts\activate
-
-Install Requirements:
-
-    pip install -r requirements.txt
-
-Create an `.env` file for the backend:
-
-- On macOS:
-
-  - Use nano to create the `.env` file:
-
-        touch .env
-
-- On Windows:
-
-  - Use ni to create the `.env` file
-
-        ni .env -Force
-       
-  
-Generate the JWT Secret Key 
-- To generate a secure `JWT_SECRET_KEY`, run the following command:
-
-      python -c "import secrets; print(secrets.token_hex(32))"
-
-Example:
-  `094bb15924a8a63d82f612b978e8bc758d5c3f0330a41beefb36f45b587411d4`
-- This key will be used to secure user sessions
-- Copy the generated key from your terminal
-
-Edit the .env file
-
-- On macOS:
-
-      nano .env
-
-  Paste your copied JWT Secret Key into the file like this
-`JWT_SECRET_KEY=094bb15924a8a63d82f612b978e8bc758d5c3f0330a41beefb36f45b587411d4`
-
-  Also paste enviroment variable for flask:
-
-      FLASK_ENV=development
-  Exit and save.
-
-
-- On Windows:
-  
-      notepad .env
-
-  Paste your copied JWT Secret Key into the file like this
-`JWT_SECRET_KEY=094bb15924a8a63d82f612b978e8bc758d5c3f0330a41beefb36f45b587411d4`
-
-  Also paste enviroment variable for flask:
-
-      FLASK_ENV=development
-  Exit and save.
-
-
-## Frontend
-
-Navigate to the Frontend Directory:
-
-    cd ../frontend
-
-Create the `.env` File for the Frontend. Use same commands for creating and editing .env files as [above]((#create-an-env-file-for-the-backend))
-
-- Set a port for your backend server inside the .env file:
-  
-      REACT_APP_BACKEND_SERVER=http://localhost:5000
-
-Install Dependencies and generate the build:
-    
-    npm install
-    npm run build
-
-
-Start the Application:
-    
-        cd ../backend
-        python run.py
-
-Navigate and get familiar with the app
-
-Usage
-
-    Register or Login:
-        Open the application in your browser ---> http://localhost:5000
-        Register a new account or log in with your existing credentials.
-
-    Upload avatars:
-        Upload an image and use it as the avatar of the user
-
-    Search for Products:
-        Use the search bar to find products.
-        Sort products by price or filter by categories in store.
-
-    Products:
-        Add, edit, or delete reviews of products you buyed
-
-    Add to Favorites and Basket:
-        Add products to your favorites list for quick access.
-        Add products to your basket to proceed with the purchase.
-
-    Checkout:
-        Go to your basket and click on the checkout button.
-        Fill in your billing and shipping information.
-        Choose your preferred payment method.
-        Review the total cost and confirm your purchase.
