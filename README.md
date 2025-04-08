@@ -1,7 +1,16 @@
+# 📑 Table of Contents:
+
 1. [🚀 Project Overview](#project-overview)
 2. [🖼️ Architecture Diagram](#architecture-diagram)
 3. [🧰 Overview of Used AWS Services](#overview-of-used-aws-services)
 4. [⚙️ Terraform Configuration Overview](#terraform-configuration-overview)
+5. [🏗️ Infrastructure Components](#infrastructure-components)
+   - [🌐 VPC](#vpc)
+   - [🛡️ Security Groups](#security-groups)
+   - [🖥️ EC2 Launch Template](#ec2-launch-template)
+   - [⚖️ Application Load Balancer (ALB)](#application-load-balancer-alb)
+   - [💾 Amazon RDS](#amazon-rds)
+   - [🗂️ S3 Bucket](#s3-bucket)
 
   
 ---
@@ -52,8 +61,34 @@ For details about the application's features, functionality, and local installat
 ---
 ### 4. ⚙️ Terraform Configuration Overview:
 
+terraform/
+│
+├── main.tf              # Root module wiring all other modules
+├── variables.tf         # Input variables
+├── outputs.tf           # Output values from root module
+├── terraform.tfvars     # Variable values used during plan/apply
+│
+└── modules/
+    ├── alb/
+    ├── security_groups/
+    ├── ec2_launch_template/
+    ├── rds/
+    ├── s3_bucket/
+    └── vpc/
+---
 
-   ![image](https://github.com/user-attachments/assets/c7e93461-e891-4192-b1a2-3405d6229e67)
+### 5. 🏗️ Infrastructure Components:
+
+### **🌐 VPC:**
+-Location: modules/vpc
+-Description: Defines the Virtual Private Cloud, subnets, route tables, and internet gateways.
+-Key Resources:
+-aws_vpc
+-aws_subnet
+-aws_internet_gateway
+-aws_route_table
+ 
+
 
 
 
