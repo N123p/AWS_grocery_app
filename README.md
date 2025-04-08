@@ -59,7 +59,7 @@ For details about the application's features, functionality, and local installat
    - Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
 
 ---
-### 4. ⚙️ Terraform Configuration Overview:
+## 4. ⚙️ Terraform Configuration Overview:
 
 terraform/
 │
@@ -77,16 +77,30 @@ terraform/
     └── vpc/
 ---
 
-### 5. 🏗️ Infrastructure Components:
+## 5. 🏗️ Infrastructure Components:
+   ```bash
+   terraform/
+├── main.tf              # Root module wiring all other modules
+├── variables.tf         # Input variables
+├── outputs.tf           # Output values from root module
+├── terraform.tfvars     # Variable values used during plan/apply
+└── modules/
+    ├── alb/             # Application Load Balancer configuration
+    ├── security_groups/ # Security group rules for ALB, EC2, RDS
+    ├── ec2_launch_template/ # EC2 instance setup and Auto Scaling
+    ├── rds/             # Amazon RDS (PostgreSQL/MySQL) database
+    ├── s3_bucket/       # S3 bucket for static files
+    └── vpc/             # VPC, subnets, IGW, route tables, etc.
 
-### **🌐 VPC:**
--Location: modules/vpc
--Description: Defines the Virtual Private Cloud, subnets, route tables, and internet gateways.
--Key Resources:
--aws_vpc
--aws_subnet
--aws_internet_gateway
--aws_route_table
+   ```
+###  **🌐 VPC:**
+  -Location: modules/vpc
+  -Description: Defines the Virtual Private Cloud, subnets, route tables, and internet gateways.
+  -Key Resources:
+  -aws_vpc
+  -aws_subnet
+  -aws_internet_gateway
+  -aws_route_table
  
 
 
