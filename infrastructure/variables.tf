@@ -213,5 +213,5 @@ variable "db_subnet_cidrs" {
 variable "alb_ingress_ports" {
   description = "Ports for the ALB security group ingress."
   type        = list(number)
-  default     = [80, 443]
+  default     = [80, 5000]
 }

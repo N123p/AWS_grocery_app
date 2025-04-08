@@ -1,7 +1,7 @@
 📑 Table of Contents:
 
 1.🚀 Project Overview
-2. 🖼️ Architecture Diagram
+2.🖼️ Architecture Diagram
 3.🧰 Overview of Used AWS Services
 4.⚙️ Terraform Configuration Overview
 

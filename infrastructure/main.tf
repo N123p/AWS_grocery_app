@@ -20,7 +20,7 @@ module "security_groups" {
   vpc_id            = module.vpc.vpc_id  # Correctly using vpc_id from the VPC module
   allowed_ips       = var.allowed_ips
   name              = "rds-postgres-security-group"
-  alb_ingress_ports = [80, 443]
+  alb_ingress_ports = [80, 5000]
 
 }
 
