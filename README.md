@@ -11,7 +11,7 @@
    - [⚖️ Application Load Balancer (ALB)](#application-load-balancer-alb)
    - [💾 Amazon RDS](#amazon-rds)
    - [🗂️ S3 Bucket](#s3-bucket)
-   - [🔐 IAM Roles for EC2](#iam roles for ec2)
+   - [🔐 IAM Roles for EC2](#iam-roles-for-ec2)
 
   
 ---
