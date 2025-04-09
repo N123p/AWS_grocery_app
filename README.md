@@ -12,6 +12,7 @@
    - [💾 Amazon RDS](#amazon-rds)
    - [🗂️ S3 Bucket](#s3-bucket)
    - [🔐 IAM Roles for EC2](#iam-roles-for-ec2)
+   - [🔐AWS Secrets Manager](#aws-secrets-manager) 
 
   
 ---
@@ -171,7 +172,16 @@ terraform/
   - `aws_iam_role_policy_attachment`
   - `aws_iam_instance_profile`
 ---
+### 🔐 AWS Secrets Manager
 
+- **📁 Location:** `modules/aws_secrets_manager`  
+- **📝 Description:**  
+  Manages sensitive data like database credentials or API keys securely using AWS Secrets Manager. This module creates and stores secrets, allowing secure access by applications or services without hardcoding sensitive values.
+- - **🔑 Key Terraform Resources:**
+  - `aws_secretsmanager_secret`
+  - `aws_secretsmanager_secret_version`
+
+---
 ###  ⚙️ Root Module
 
 - **📁 Location:** `Root directory (main.tf, variables.tf, outputs.tf, terraform.tfvars)`  
@@ -179,6 +189,7 @@ terraform/
   Integrates all individual modules and manages global variables, outputs, and backend config.
 -  **Purpose:**
    Serves as the central orchestrator for Terraform execution.
+---
 
 
 
