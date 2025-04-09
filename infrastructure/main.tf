@@ -24,6 +24,14 @@ module "security_groups" {
 
 }
 
+module "iam_roles_ec2" {
+  source          = "./modules/iam_roles_ec2"
+  iam_role_name   = "ec2-s3-access-role"
+  iam_policy_name = "ec2-s3-policy"
+  s3_bucket_name  = var.bucket_name  # Or your actual S3 bucket name
+  folder_path     = var.avatar_prefix
+}
+
 module "ec2_launch_template" {
   source             = "./modules/ec2_launch_template"
   ami_id             = var.ami_id

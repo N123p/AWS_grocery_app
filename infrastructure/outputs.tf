@@ -48,5 +48,16 @@ output "alb_dns_name" {
   description = "The DNS name of the Application Load Balancer."
 }
 
+output "ec2_iam_instance_profile" {
+  description = "The IAM instance profile name to be attached to EC2"
+  value       = module.iam_roles_ec2.instance_profile_name
+}
+
+output "ec2_iam_role" {
+  description = "The IAM Role name created for EC2"
+  value       = module.iam_roles_ec2.role_name
+}
+
+
 
 
