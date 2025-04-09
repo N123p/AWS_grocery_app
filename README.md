@@ -92,14 +92,76 @@ For details about the application's features, functionality, and local installat
   - `aws_internet_gateway`
   - `aws_route_table`
   - `aws_route_table_association`
+---
 
- 
+### 🛡️ Security Groups
+
+- **📁 Location:** `modules/security_groups`
+
+- **📝 Description:**
+  Creates security groups for EC2, RDS, and ALB to control inbound/outbound traffic.
+
+- **🔑 Key Terraform Resources:**
+
+   - `aws_security_group`
+   - `aws_security_group_rule`
+
+---
+###  🖥️ EC2 Launch Template
+
+- **📁 Location:** `ec2_launch_template`  
+- **📝 Description:**  
+  Configures EC2 launch template with AMI, instance type, and user data script.
 
 
+- **🔑 Key Terraform Resources:**
+  - `aws_launch_template`
+  - `aws_autoscaling_group`
+
+---
+###  🌐 Application Load Balancer (ALB)
+
+- **📁 Location:** `modules/alb`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
 
 
+- **🔑 Key Terraform Resources:**
+  - `aws_lb`
+  - `aws_lb_target_group`
+  - `aws_lb_listener`
+
+---
+###  💾 RDS
+
+- **📁 Location:** `modules/rds`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
 
 
+- **🔑 Key Terraform Resources:**
+  - `aws_db_instance`
+  - `aws_db_subnet_group`
+---
+
+###  💾 S3 Bucket
+
+- **📁 Location:** `modules/s3_bucket`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_s3_bucket`
+  - `aws_db_subnet_group`
+
+###  ⚙️ Root Module
+
+- **📁 Location:** `Root directory (main.tf, variables.tf, outputs.tf, terraform.tfvars)`  
+- **📝 Description:**  
+  Integrates all individual modules and manages global variables, outputs, and backend config.
+-  **Purpose:**
+   Serves as the central orchestrator for Terraform execution.
 
 
 
