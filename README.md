@@ -11,6 +11,7 @@
    - [⚖️ Application Load Balancer (ALB)](#application-load-balancer-alb)
    - [💾 Amazon RDS](#amazon-rds)
    - [🗂️ S3 Bucket](#s3-bucket)
+   - [🔐 IAM Roles for EC2](#IAM Roles for EC2)
 
   
 ---
@@ -32,7 +33,7 @@ For details about the application's features, functionality, and local installat
 ---
 
  ### 2. 🖼️ Architecture Diagram:
-![image](https://github.com/user-attachments/assets/7c5fe55e-e6c9-482c-84a8-4a74bc18e0fb)
+  ![img.png](img.png)
 ---
 
 ## 🧰 Overview of Used AWS Services:
@@ -154,6 +155,20 @@ For details about the application's features, functionality, and local installat
 - **🔑 Key Terraform Resources:**
   - `aws_s3_bucket`
   - `aws_db_subnet_group`
+---
+###  🔐 IAM Roles for EC2
+
+- **📁 Location:** `modules/iam_roles_ec2`  
+- **📝 Description:**  
+  Creates an IAM role and instance profile for EC2 instances, granting them permissions to access a specific S3 bucket or folder path within the bucket.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_iam_role`
+  - `aws_iam_policy`
+  - `aws_iam_role_policy_attachment`
+  - `aws_iam_instance_profile`
+---
 
 ###  ⚙️ Root Module
 
