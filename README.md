@@ -63,18 +63,20 @@ For details about the application's features, functionality, and local installat
 ## 4. ⚙️ Terraform Configuration Overview:
 
    ```bash
-   terraform/
-├── main.tf              # Root module wiring all other modules
-├── variables.tf         # Input variables
-├── outputs.tf           # Output values from root module
-├── terraform.tfvars     # Variable values used during plan/apply
+terraform/
+├── main.tf                 # Root module wiring all other modules
+├── variables.tf            # Input variables
+├── outputs.tf              # Output values from root module
+├── terraform.tfvars        # Variable values used during plan/apply
 └── modules/
-    ├── alb/             # Application Load Balancer configuration
-    ├── security_groups/ # Security group rules for ALB, EC2, RDS
-    ├── ec2_launch_template/ # EC2 instance setup and Auto Scaling
-    ├── rds/             # Amazon RDS (PostgreSQL/MySQL) database
-    ├── s3_bucket/       # S3 bucket for static files
-    └── vpc/             # VPC, subnets, IGW, route tables, etc.
+    ├── alb/                    # Application Load Balancer configuration
+    ├── security_groups/        # Security group rules for ALB, EC2, RDS
+    ├── ec2_launch_template/    # EC2 instance setup and Auto Scaling
+    ├── rds/                    # Amazon RDS (PostgreSQL/MySQL) database
+    ├── s3_bucket/              # S3 bucket for static files
+    ├── vpc/                    # VPC, subnets, IGW, route tables, etc.
+    └── iam_roles_ec2/         # IAM role and policy for EC2 to access S3
+
 
    ```
 ---
