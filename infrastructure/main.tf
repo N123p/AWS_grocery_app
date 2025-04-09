@@ -96,3 +96,15 @@ module "alb" {
   vpc_id                = module.vpc.vpc_id
   health_check_path     = "/health"
 }
+
+module "aws_secrets_manager" {
+  source            = "./modules/aws_secrets_manager"
+  secret_name       = "my_grocery_secret"
+  secret_description = "This is a test secret"
+  secret_string     = jsonencode({
+    "API_KEY" = "my-super-secret-api-key"
+  })
+  secret_tags = {
+    "Environment" = "Development"
+  }
+}

@@ -58,6 +58,17 @@ output "ec2_iam_role" {
   value       = module.iam_roles_ec2.role_name
 }
 
+output "secret_arn" {
+  description = "The ARN of the created secret"
+  value       = module.aws_secrets_manager.secret_arn
+}
+
+output "secret_id" {
+  description = "The ID of the created secret"
+  value       = module.aws_secrets_manager.secret_id
+}
+
+
 
 
 
