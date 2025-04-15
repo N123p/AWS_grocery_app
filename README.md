@@ -20,6 +20,7 @@
 
 This project is part of the Cloud Track in our Software Engineering bootcamp at Masterschool. The application was originally developed by Alejandro Román, our Track Mentor (A big Thanks to him!). Our task was to design and deploy its AWS infrastructure step by step, implementing each component individually.
 
+
  ### 🌐 AWS Services Used:
 - 🖥️ **EC2 Instance**: Deployed virtual servers to run the application.
 - 🏢 **Application Load Balancer (ALB)**: Ensured high availability and traffic distribution across instances.
@@ -27,8 +28,7 @@ This project is part of the Cloud Track in our Software Engineering bootcamp at 
 - 🗂️ **S3 Bucket**: Stored and managed static files for the application.
 - 🛡️ **IAM Roles**: Configured and attached IAM roles to securely manage permissions and access control for various AWS resources.
 
-Instead of a manual setup, I took the challenge further by fully automating the provisioning and deployment using Terraform. This approach ensures a scalable, repeatable, and error-resistant deployment process, eliminating the need for manual configurations.
-
+The objective was to architect and deploy a resilient, highly available, and secure infrastructure, following Infrastructure as Code (IaC) principles and AWS best practices. Every component was provisioned, configured, and integrated through Terraform — ensuring consistency, repeatability, and version-controlled deployments.
 For details about the application's features, functionality, and local installation, refer to the original README.md by Alejandro.
 
 ---
