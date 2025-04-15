@@ -205,92 +205,35 @@ terraform/
 - **📁 Location:** `modules/security_groups`
 
 - **📝 Description:**
-  Creates security groups for EC2, RDS, and ALB to control inbound/outbound traffic.
-
-- **🔑 Key Terraform Resources:**
-
-   - `aws_security_group`
-   - `aws_security_group_rule`
+  Security groups act as virtual firewalls to regulate traffic:
+  - ALB Security Group: Allows inbound HTTP/HTTPS traffic from the internet.
+  - EC2 Security Group: Accepts traffic exclusively from the ALB.
+  - RDS Security Group: Permits traffic only from EC2 instances within private subnets.
 
 ---
-###  🖥️ EC2 Launch Template
 
-- **📁 Location:** `ec2_launch_template`  
-- **📝 Description:**  
-  Configures EC2 launch template with AMI, instance type, and user data script.
-
-
-- **🔑 Key Terraform Resources:**
-  - `aws_launch_template`
-  - `aws_autoscaling_group`
-
----
-###  🌐 Application Load Balancer (ALB)
-
-- **📁 Location:** `modules/alb`  
-- **📝 Description:**  
-  Sets up an ALB to distribute traffic across EC2 instances.
-
-
-- **🔑 Key Terraform Resources:**
-  - `aws_lb`
-  - `aws_lb_target_group`
-  - `aws_lb_listener`
-
----
-###  💾 RDS
-
-- **📁 Location:** `modules/rds`  
-- **📝 Description:**  
-  Sets up an ALB to distribute traffic across EC2 instances.
-
-
-- **🔑 Key Terraform Resources:**
-  - `aws_db_instance`
-  - `aws_db_subnet_group`
----
-
-###  💾 S3 Bucket
-
-- **📁 Location:** `modules/s3_bucket`  
-- **📝 Description:**  
-  Sets up an ALB to distribute traffic across EC2 instances.
-
-
-- **🔑 Key Terraform Resources:**
-  - `aws_s3_bucket`
-  - `aws_db_subnet_group`
----
 ###  🔐 IAM Roles for EC2
 
 - **📁 Location:** `modules/iam_roles_ec2`  
 - **📝 Description:**  
-  Creates an IAM role and instance profile for EC2 instances, granting them permissions to access a specific S3 bucket or folder path within the bucket.
+  Defines scoped IAM roles granting EC2 instances secure, temporary permissions:
+  - Enables controlled access to AWS services such as S3.
+  - Prevents hardcoding sensitive credentials within application code.
 
-
-- **🔑 Key Terraform Resources:**
-  - `aws_iam_role`
-  - `aws_iam_policy`
-  - `aws_iam_role_policy_attachment`
-  - `aws_iam_instance_profile`
 ---
 ### 🔐 AWS Secrets Manager
 
 - **📁 Location:** `modules/aws_secrets_manager`  
 - **📝 Description:**  
-  Manages sensitive data like database credentials or API keys securely using AWS Secrets Manager. This module creates and stores secrets, allowing secure access by applications or services without hardcoding sensitive values.
-- - **🔑 Key Terraform Resources:**
-  - `aws_secretsmanager_secret`
-  - `aws_secretsmanager_secret_version`
-
+  Manages sensitive data like database credentials securely:
+  - Applications retrieve secrets programmatically at runtime.
+  - Prevents embedding sensitive information in code or configuration files.
 ---
-###  ⚙️ Root Module
-
-- **📁 Location:** `Root directory (main.tf, variables.tf, outputs.tf, terraform.tfvars)`  
+###  🔒 Encryption
 - **📝 Description:**  
-  Integrates all individual modules and manages global variables, outputs, and backend config.
--  **Purpose:**
-   Serves as the central orchestrator for Terraform execution.
+  Ensures data security at rest and in transit:
+ - RDS storage and automated backups are encrypted at rest.
+ - S3 bucket utilizes server-side encryption for all stored objects.
 ---
 
 
