@@ -231,9 +231,9 @@ terraform/
 ---
 ###  🔒 Encryption
 - **📝 Description:**  
-  Ensures data security at rest and in transit:
- - RDS storage and automated backups are encrypted at rest.
- - S3 bucket utilizes server-side encryption for all stored objects.
+   Ensures data security at rest and in transit:
+   - RDS storage and automated backups are encrypted at rest.
+   - S3 bucket utilizes server-side encryption for all stored objects.
 ---
 
 
