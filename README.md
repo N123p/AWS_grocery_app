@@ -2,7 +2,7 @@
 
 1. [🚀 Project Overview](#project-overview)
 2. [🖼️ Architecture Diagram](#architecture-diagram)
-3. [🧰 Overview of Used AWS Services](#overview-of-used-aws-services)
+3. [🧰 Architectural Design Rationale](#overview-of-used-aws-services)
 4. [⚙️ Terraform Configuration Overview](#terraform-configuration-overview)
 5. [🏗️ Infrastructure Components](#infrastructure-components)
    - [🌐 VPC](#vpc)
@@ -39,51 +39,28 @@ For details about the application's features, functionality, and local installat
 ## 📌 Architectural Design Rationale:
 
 ### 🖥️ **Amazon EC2 (Elastic Compute Cloud):**
-   - Chosen over alternatives like App Runner, Lambda, and ECS for:
+   - Chosen over alternatives like App Runner, Lambda, and ECS for
    - Full control over the operating system, networking, and runtime environment.
    - Simplified deployment suitable for early-stage infrastructure learners.
 
 ### 🌐 **Application Load Balancer (ALB):**
-   - Distributes incoming HTTP(S) traffic across multiple EC2 instances to ensure high availability and fault tolerance.
+   - Implemented for Storing static files like images and assets in a scalable, durable, and cost-effective way.
 
 ### 💾 **Amazon RDS (Relational Database Service):**
-   - Managed database service (e.g., PostgreSQL or MySQL) used to store structured app data such as users, orders, and inventory.
+   - Selected instead of DynamoDB or Aurora Serverless because:
+   - The application relies on a relational schema with structured relationships.
+   - RDS offers automated backups, encryption, and multi-AZ failover with minimal operational overhead.
 
 ### 🗂️ **Amazon S3 (Simple Storage Service):**
-   - Object storage for static files, such as product images, frontend assets, and backups.
+   - Amazon S3 was used for static asset storage, ensuring cost-effective, durable, and highly available object storage.
 
 ### 🔐 **IAM Roles (Identity & Access Management):**
-   - Provides temporary, secure, and scoped permissions for services like EC2 to access RDS or S3 without hardcoding credentials.
-
+   - IAM Roles were implemented to securely manage permissions between AWS services without embedding static credentials within application code or instances.
 ### 🛡️ **Security Groups (SG):**
    - Acts as a virtual firewall for your EC2 instances to control inbound and outbound traffic based on defined rules.
 
 ### ⚙️ **Terraform (Infrastructure as Code):**
-   - Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
-
----
-## 🧰 Overview of Used AWS Services:
-
-### 🖥️ **Amazon EC2 (Elastic Compute Cloud):**
-   - Virtual servers to host and run the grocery web application. Scalable and flexible compute power.
-
-### 🌐 **Application Load Balancer (ALB):**
-   - Distributes incoming HTTP(S) traffic across multiple EC2 instances to ensure high availability and fault tolerance.
-
-### 💾 **Amazon RDS (Relational Database Service):**
-   - Managed database service (e.g., PostgreSQL or MySQL) used to store structured app data such as users, orders, and inventory.
-
-### 🗂️ **Amazon S3 (Simple Storage Service):**
-   - Object storage for static files, such as product images, frontend assets, and backups.
-
-### 🔐 **IAM Roles (Identity & Access Management):**
-   - Provides temporary, secure, and scoped permissions for services like EC2 to access RDS or S3 without hardcoding credentials.
-
-### 🛡️ **Security Groups (SG):**
-   - Acts as a virtual firewall for your EC2 instances to control inbound and outbound traffic based on defined rules.
-
-### ⚙️ **Terraform (Infrastructure as Code):**
-   - Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
+   - Terraform was adopted as the Infrastructure as Code (IaC) tool to provision and manage cloud infrastructure in a scalable, automated, and version-controlled manner.
 
 ---
 ## 4. ⚙️ Terraform Configuration Overview:
