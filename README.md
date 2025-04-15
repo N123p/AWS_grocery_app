@@ -13,7 +13,7 @@
    - [🗂️ S3 Bucket](#s3-bucket)
    - [🔐 IAM Roles for EC2](#iam-roles-for-ec2)
    - [🔐AWS Secrets Manager](#aws-secrets-manager) 
-
+6.  [🔐 Security Considerations](#securtity-considerations)
   
 ---
  ## 🚀 Project Overview:
@@ -53,11 +53,6 @@ For details about the application's features, functionality, and local installat
 
 ### 🗂️ **Amazon S3 (Simple Storage Service):**
    - Amazon S3 was used for static asset storage, ensuring cost-effective, durable, and highly available object storage.
-
-### 🔐 **IAM Roles (Identity & Access Management):**
-   - IAM Roles were implemented to securely manage permissions between AWS services without embedding static credentials within application code or instances.
-### 🛡️ **Security Groups (SG):**
-   - Acts as a virtual firewall for your EC2 instances to control inbound and outbound traffic based on defined rules.
 
 ### ⚙️ **Terraform (Infrastructure as Code):**
    - Terraform was adopted as the Infrastructure as Code (IaC) tool to provision and manage cloud infrastructure in a scalable, automated, and version-controlled manner.
@@ -193,6 +188,110 @@ terraform/
    Serves as the central orchestrator for Terraform execution.
 ---
 
+## 6. 🔐 Security Considerations:
+- Security was integrated into each layer of the infrastructure, following AWS security best practices and the principle of least privilege.
+
+### 🌐 VPC Module  and Subnets
+
+- **📁 Location:** `modules/vpc`  
+- **📝 Description:**  
+  Custom VPC design isolates public-facing and private resources:
+   - Public subnets host the Application Load Balancer (ALB) to handle inbound traffic.
+   -  Private subnets host EC2 instances and RDS, isolating sensitive services from direct internet access.
+---
+
+### 🛡️ Security Groups
+
+- **📁 Location:** `modules/security_groups`
+
+- **📝 Description:**
+  Creates security groups for EC2, RDS, and ALB to control inbound/outbound traffic.
+
+- **🔑 Key Terraform Resources:**
+
+   - `aws_security_group`
+   - `aws_security_group_rule`
+
+---
+###  🖥️ EC2 Launch Template
+
+- **📁 Location:** `ec2_launch_template`  
+- **📝 Description:**  
+  Configures EC2 launch template with AMI, instance type, and user data script.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_launch_template`
+  - `aws_autoscaling_group`
+
+---
+###  🌐 Application Load Balancer (ALB)
+
+- **📁 Location:** `modules/alb`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_lb`
+  - `aws_lb_target_group`
+  - `aws_lb_listener`
+
+---
+###  💾 RDS
+
+- **📁 Location:** `modules/rds`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_db_instance`
+  - `aws_db_subnet_group`
+---
+
+###  💾 S3 Bucket
+
+- **📁 Location:** `modules/s3_bucket`  
+- **📝 Description:**  
+  Sets up an ALB to distribute traffic across EC2 instances.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_s3_bucket`
+  - `aws_db_subnet_group`
+---
+###  🔐 IAM Roles for EC2
+
+- **📁 Location:** `modules/iam_roles_ec2`  
+- **📝 Description:**  
+  Creates an IAM role and instance profile for EC2 instances, granting them permissions to access a specific S3 bucket or folder path within the bucket.
+
+
+- **🔑 Key Terraform Resources:**
+  - `aws_iam_role`
+  - `aws_iam_policy`
+  - `aws_iam_role_policy_attachment`
+  - `aws_iam_instance_profile`
+---
+### 🔐 AWS Secrets Manager
+
+- **📁 Location:** `modules/aws_secrets_manager`  
+- **📝 Description:**  
+  Manages sensitive data like database credentials or API keys securely using AWS Secrets Manager. This module creates and stores secrets, allowing secure access by applications or services without hardcoding sensitive values.
+- - **🔑 Key Terraform Resources:**
+  - `aws_secretsmanager_secret`
+  - `aws_secretsmanager_secret_version`
+
+---
+###  ⚙️ Root Module
+
+- **📁 Location:** `Root directory (main.tf, variables.tf, outputs.tf, terraform.tfvars)`  
+- **📝 Description:**  
+  Integrates all individual modules and manages global variables, outputs, and backend config.
+-  **Purpose:**
+   Serves as the central orchestrator for Terraform execution.
+---
 
 
 
