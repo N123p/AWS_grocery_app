@@ -36,7 +36,32 @@ For details about the application's features, functionality, and local installat
  ### 2. 🖼️ Architecture Diagram:
   ![img.png](img.png)
 ---
+## 📌 Architectural Design Rationale:
 
+### 🖥️ **Amazon EC2 (Elastic Compute Cloud):**
+   - Chosen over alternatives like App Runner, Lambda, and ECS for:
+   - Full control over the operating system, networking, and runtime environment.
+   - Simplified deployment suitable for early-stage infrastructure learners.
+
+### 🌐 **Application Load Balancer (ALB):**
+   - Distributes incoming HTTP(S) traffic across multiple EC2 instances to ensure high availability and fault tolerance.
+
+### 💾 **Amazon RDS (Relational Database Service):**
+   - Managed database service (e.g., PostgreSQL or MySQL) used to store structured app data such as users, orders, and inventory.
+
+### 🗂️ **Amazon S3 (Simple Storage Service):**
+   - Object storage for static files, such as product images, frontend assets, and backups.
+
+### 🔐 **IAM Roles (Identity & Access Management):**
+   - Provides temporary, secure, and scoped permissions for services like EC2 to access RDS or S3 without hardcoding credentials.
+
+### 🛡️ **Security Groups (SG):**
+   - Acts as a virtual firewall for your EC2 instances to control inbound and outbound traffic based on defined rules.
+
+### ⚙️ **Terraform (Infrastructure as Code):**
+   - Automates the entire provisioning process. Ensures infrastructure is repeatable, version-controlled, and error-resistant.
+
+---
 ## 🧰 Overview of Used AWS Services:
 
 ### 🖥️ **Amazon EC2 (Elastic Compute Cloud):**
