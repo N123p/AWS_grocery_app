@@ -70,7 +70,7 @@ module "rds" {
 
 module "s3_bucket" {
   source                  = "./modules/s3_bucket"
-  bucket_name             = var.bucket_name # Set your S3 bucket name in terraform.tfvars
+  bucket_name             = var.bucket_name
   versioning_status       = "Disabled"
   lifecycle_status        = "Disabled"
   expiration_days         = 30
@@ -80,11 +80,12 @@ module "s3_bucket" {
   restrict_public_buckets = true
   avatar_prefix           = "avatars/"
   avatar_filename         = "user_default.png"
-  avatar_path             = "../backend/avatar/user_default.png"
+  avatar_s3_key           = "avatars/user_default.png"    # new variable
   db_dump_prefix          = "db_backups/"
   db_dump_filename        = "sqlite_dump_clean.sql"
-  db_dump_path            = "../backend/app/sqlite_dump_clean.sql"
+  db_dump_s3_key          = "db_backups/sqlite_dump_clean.sql"   # new variable
 }
+
 
 module "alb" {
   source                = "./modules/alb"

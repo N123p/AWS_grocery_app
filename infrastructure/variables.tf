@@ -179,11 +179,7 @@ variable "avatar_filename" {
   default     = "user_default.png"
 }
 
-variable "avatar_path" {
-  description = "Path to the local default avatar image file"
-  type        = string
-  default     = "../backend/avatar/user_default.png"
-}
+
 
 variable "db_dump_prefix" {
   description = "Prefix for database dump file"
@@ -197,11 +193,7 @@ variable "db_dump_filename" {
   default     = "sqlite_dump_clean.sql"
 }
 
-variable "db_dump_path" {
-  description = "Local path to SQLite dump file"
-  type        = string
-  default     = "../backend/app/sqlite_dump_clean.sql"
-}
+
 
 
 variable "db_subnet_cidrs" {
@@ -216,4 +208,15 @@ variable "alb_ingress_ports" {
   default     = [80, 5000]
 }
 
+variable "avatar_s3_key" {
+  description = "The S3 key (path inside the bucket) for the default avatar image"
+  type        = string
+  default     = "avatars/user_default.png"
+}
+
+variable "db_dump_s3_key" {
+  description = "The S3 key (path inside the bucket) for the database dump"
+  type        = string
+  default     = "db_backups/sqlite_dump_clean.sql"
+}
 

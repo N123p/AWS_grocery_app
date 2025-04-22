@@ -9,7 +9,7 @@ resource "aws_db_instance" "rds" {
   storage_encrypted      = var.storage_encrypted
   deletion_protection    = var.deletion_protection
   publicly_accessible    = var.publicly_accessible
-  multi_az               = var.multi_az
+  multi_az               = false
   vpc_security_group_ids = var.vpc_security_group_ids
    db_subnet_group_name   = var.db_subnet_group_name
   skip_final_snapshot    = var.skip_final_snapshot

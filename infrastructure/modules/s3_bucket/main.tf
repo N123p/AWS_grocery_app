@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "grocery_s3" {
   bucket = var.bucket_name
+   key    = "${var.avatar_prefix}${var.avatar_filename}"
   force_destroy = false
 }
 
@@ -59,6 +60,6 @@ resource "aws_s3_bucket_policy" "grocery_s3_policy" {
 resource "aws_s3_object" "avatar_image" {
   bucket = aws_s3_bucket.grocery_s3.id
   key    = "${var.avatar_prefix}${var.avatar_filename}"
-  source = var.avatar_path
+
 }
 

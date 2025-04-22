@@ -44,10 +44,7 @@ variable "avatar_prefix" {
   type        = string
 }
 
-variable "avatar_path" {
-  description = "Path to the local default avatar image file"
-  type        = string
-}
+
 
 variable "avatar_filename" {
   description = "The default avatar filename"
@@ -64,8 +61,15 @@ variable "db_dump_filename" {
   type        = string
 }
 
-variable "db_dump_path" {
-  description = "Local path to the database dump file"
+
+
+variable "avatar_s3_key" {
+  description = "The S3 key (path inside the bucket) for the default avatar image"
+  type        = string
+}
+
+variable "db_dump_s3_key" {
+  description = "The S3 key (path inside the bucket) for the database dump"
   type        = string
 }
 
