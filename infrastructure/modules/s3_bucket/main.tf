@@ -1,6 +1,5 @@
 resource "aws_s3_bucket" "grocery_s3" {
   bucket = var.bucket_name
-   key    = "${var.avatar_prefix}${var.avatar_filename}"
   force_destroy = false
 }
 
