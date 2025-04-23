@@ -27,7 +27,9 @@ jobs:
           aws-region: us-east-1
 
       - name: Terraform Init
+        working-directory: infrastructure
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan
+        working-directory: infrastructure
+        run: terraform plan -out=tfplan
