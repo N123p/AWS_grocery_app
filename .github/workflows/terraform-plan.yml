@@ -49,4 +49,5 @@ jobs:
         run: |
           terraform plan -input=false \
             -var-file="terraform.tfvars" \
+            -var='allowed_ips=${{ secrets.ALLOWED_IPS }}' \
             -out=tfplan
