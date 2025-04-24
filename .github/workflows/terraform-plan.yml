@@ -46,7 +46,4 @@ jobs:
 
       - name: Terraform Plan
         working-directory: infrastructure
-        run: terraform plan \
-          -input=false \
-          -var='allowed_ips=["${{ secrets.ALLOWED_IP }}"]' \
-          -out=tfplan
+        run: terraform plan -input=false -var="allowed_ips=[\"${{ secrets.ALLOWED_IP }}\"]" -out=tfplan
