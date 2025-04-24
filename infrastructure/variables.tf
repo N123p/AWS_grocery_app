@@ -81,7 +81,7 @@ variable "db_name" {
 variable "db_username" {
   description = "The master username for the database"
   type        = string
-
+  default = "myadmin"
 }
 
 variable "db_password" {
