@@ -35,6 +35,10 @@ jobs:
           echo 'db_password = "${{ secrets.DB_PASSWORD }}"' >> terraform.tfvars
           echo 'ami_id = "${{ secrets.AMI_ID }}"' >> terraform.tfvars
           echo 'key_name = "${{ secrets.KEY_NAME }}"' >> terraform.tfvars
+          echo 'region = "${{ secrets.REGION }}"' >> terraform.tfvars
+          echo 'instance_type = "${{ secrets.INSTANCE_TYPE }}"' >> terraform.tfvars
+          echo 'db_name = "${{ secrets.DB_NAME }}"' >> terraform.tfvars
+          echo 'vpc_id = "${{ secrets.VPC_ID }}"' >> terraform.tfvars
 
       - name: Terraform Init
         working-directory: infrastructure
