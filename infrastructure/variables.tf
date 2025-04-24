@@ -23,6 +23,7 @@ variable "instance_type" {
 variable "key_name" {
   description = "SSH Key Name"
   type        = string
+  default = "t2.micro"
 }
 
 variable "vpc_name" {
