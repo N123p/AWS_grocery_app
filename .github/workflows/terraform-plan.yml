@@ -46,7 +46,8 @@ jobs:
 
       - name: Terraform Plan
         working-directory: infrastructure
-        run: terraform plan \
-          -input=false \
-          -var-file="terraform.tfvars" \
-          -out=tfplan
+        run: |
+          terraform plan \
+            -input=false \
+            -var-file="terraform.tfvars" \
+            -out=tfplan
