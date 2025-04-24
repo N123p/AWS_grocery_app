@@ -24,6 +24,18 @@ jobs:
           role-to-assume: arn:aws:iam::354918385395:role/GitHubActionsOIDCRole
           aws-region: us-east-1
 
+      - name: Create terraform.tfvars file
+        working-directory: infrastructure
+        run: |
+          echo 'allowed_ips = ["${{ secrets.ALLOWED_IPS }}"]' > terraform.tfvars
+          echo 'db_password = "${{ secrets.DB_PASSWORD }}"' >> terraform.tfvars
+          echo 'ami_id = "${{ secrets.AMI_ID }}"' >> terraform.tfvars
+          echo 'key_name = "${{ secrets.KEY_NAME }}"' >> terraform.tfvars
+          echo 'region = "${{ secrets.REGION }}"' >> terraform.tfvars
+          echo 'instance_type = "${{ secrets.INSTANCE_TYPE }}"' >> terraform.tfvars
+          echo 'db_name = "${{ secrets.DB_NAME }}"' >> terraform.tfvars
+          echo 'vpc_id = "${{ secrets.VPC_ID }}"' >> terraform.tfvars
+
       - name: Verify AWS Credentials
         run: aws sts get-caller-identity
 
