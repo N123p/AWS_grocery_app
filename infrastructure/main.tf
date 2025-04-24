@@ -1,5 +1,5 @@
 provider "aws" {
-  profile = "my_web_app_1"
+
   region = var.region
 }
 
