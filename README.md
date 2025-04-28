@@ -18,6 +18,9 @@
 8. [🧩 Understanding GitHub Actions Strategy](#githubaction-strategy)
 9. [🚧 Future Developments](#furture-developments)
 10. [🚀 Step-by-Step Deployment Guide](#step-by-developments)
+11. [🔧 Troubleshooting & FAQ](#troubleshooting-faq)
+12. [🤝 Contributing](#contributing)
+13. [📜 License](#license)
   
 ---
  ## 🚀 Project Overview:
@@ -368,7 +371,7 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 - Go to Settings > Actions > General.
 - Disable GitHub Actions if you want to stop automatic deployments.
 ---
-# 🔧 Troubleshooting & FAQ
+# 11 🔧 Troubleshooting & FAQ
 
 ## Common Issues and Solutions
 
@@ -382,12 +385,12 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 
 
 ---
-## 🤝 Contributing
+## 12 🤝 Contributing
 - We welcome contributions! Follow these steps:
   - Fork the repository 
   - Create a feature branch: git checkout -b feature/your-feature 
   - Implement changes & commit 
   - Push & create a Pull Request (PR)
 ---
-## 📜 License
+## 13 📜 License
 - This project is licensed under the MIT License and is free for non-commercial use.
