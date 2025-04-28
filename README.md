@@ -374,7 +374,6 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 
 | Problem | Possible Cause | Solution |
 |:--------|:---------------|:---------|
-
 | **GitHub Actions workflow fails** | Incorrect IAM role ARN or missing secrets | Double-check GitHub repository secrets. Ensure all secrets are properly named and valid. |
 | **Cannot SSH into EC2 instance** | Wrong key or wrong public IP address | Make sure you use the correct `.pem` key. Also check that your IP is whitelisted in the security group (`allowed_ssh_ip`). |
 | **ALB DNS not reachable** | EC2 instances not registered or health check failures | Confirm target group health. Check security groups, and make sure the application server is running on the correct port. |
