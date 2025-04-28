@@ -270,7 +270,7 @@ While the current infrastructure is functional and secure, there are several enh
 - **Enable GitHub Actions Terraform Apply** in a secure, gated manner (e.g., with manual approvals).
 ---
 
-## 🚀 Step-by-Step Deployment Guide:
+## 10  🚀 Step-by-Step Deployment Guide:
 Follow these steps to clone the repository and deploy the Grocery App on AWS:
 
 ### Step 1: Create an AWS Account
@@ -368,3 +368,27 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 - Go to Settings > Actions > General.
 - Disable GitHub Actions if you want to stop automatic deployments.
 ---
+# 🔧 Troubleshooting & FAQ
+
+## Common Issues and Solutions
+
+| Problem | Possible Cause | Solution |
+|:--------|:---------------|:---------|
+
+| **GitHub Actions workflow fails** | Incorrect IAM role ARN or missing secrets | Double-check GitHub repository secrets. Ensure all secrets are properly named and valid. |
+| **Cannot SSH into EC2 instance** | Wrong key or wrong public IP address | Make sure you use the correct `.pem` key. Also check that your IP is whitelisted in the security group (`allowed_ssh_ip`). |
+| **ALB DNS not reachable** | EC2 instances not registered or health check failures | Confirm target group health. Check security groups, and make sure the application server is running on the correct port. |
+| **AWS CLI commands fail** | Misconfigured credentials or region | Re-run `aws configure` to fix credentials or region settings. |
+| **RDS database not accessible** | Security group misconfiguration | Ensure the RDS security group allows incoming connections from the application server's security group. |
+
+
+---
+## 🤝 Contributing
+- We welcome contributions! Follow these steps:
+  - Fork the repository 
+  - Create a feature branch: git checkout -b feature/your-feature 
+  - Implement changes & commit 
+  - Push & create a Pull Request (PR)
+---
+## 📜 License
+- This project is licensed under the MIT License and is free for non-commercial use.
