@@ -19,8 +19,10 @@
 9. [🚧 Future Developments](#furture-developments)
 10. [🚀 Step-by-Step Deployment Guide](#step-by-developments)
 11. [🔧 Troubleshooting & FAQ](#troubleshooting-faq)
-12. [🤝 Contributing](#contributing)
-13. [📜 License](#license)
+12. [📋 FAQ (Frequently Asked Questions)](#12--faq-frequently-asked-questions)
+13. [ 📚 Glossary](#13--glossary)
+14. [🤝 Contributing](#contributing)
+15. [📜 License](#license)
   
 ---
  ## 🚀 Project Overview:
@@ -41,6 +43,7 @@ For details about the application's features, functionality, and local installat
 ---
 
  ### 2. 🖼️ Architecture Diagram:
+  ![img_1.png](img_1.png)
   ![img.png](img.png)
 ---
 ## 📌 Architectural Design Rationale:
@@ -385,12 +388,51 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 
 
 ---
-## 12 🤝 Contributing
+
+
+## 12 📋 FAQ (Frequently Asked Questions)
+
+**Q1: Can I deploy this app outside `eu-central-1` region?**  
+> Yes! Update the region in `terraform.tfvars` and GitHub secrets. Make sure AMI IDs and other region-specific resources match your selected region.
+
+**Q2: How can I customize the EC2 instance size?**  
+> Modify the instance type in the Terraform configuration under `aws_launch_template` resource (example: `t3.micro`, `t3.medium`).
+
+**Q3: What happens if the deployment fails midway?**  
+> Terraform keeps a state file. You can fix the issue and re-run the workflow to continue. No need to start from scratch unless backend resources are broken.
+
+
+
+**Q4: How to safely rotate secrets and access keys?**  
+> - Rotate your keys in AWS IAM.
+> - Update the new values in GitHub Secrets immediately.
+> - Re-run the GitHub Actions workflow if needed.
+
+---
+
+# 13 📚 Glossary
+
+| Term | Description |
+|:-----|:------------|
+| **AWS CLI** | Command Line Interface tool to interact with AWS services. |
+| **Terraform** | Infrastructure as Code (IaC) tool to provision cloud resources automatically. |
+| **GitHub Actions** | CI/CD tool built into GitHub to automate workflows such as deployments. |
+| **S3** | AWS Simple Storage Service, used for storing objects like Terraform state files. |
+| **DynamoDB** | Managed NoSQL database by AWS, used here for Terraform state locking. |
+| **IAM** | Identity and Access Management service in AWS to control user access and roles. |
+| **EC2** | Elastic Compute Cloud — Virtual servers for running applications. |
+| **ALB** | Application Load Balancer — Distributes incoming application traffic across multiple targets. |
+| **RDS** | Relational Database Service — Managed SQL database service. |
+
+
+---
+
+## 14 🤝 Contributing
 - We welcome contributions! Follow these steps:
   - Fork the repository 
   - Create a feature branch: git checkout -b feature/your-feature 
   - Implement changes & commit 
   - Push & create a Pull Request (PR)
 ---
-## 13 📜 License
+## 15 📜 License
 - This project is licensed under the MIT License and is free for non-commercial use.
