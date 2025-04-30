@@ -97,11 +97,7 @@ variable "db_instance_class" {
   default     = "db.t3.micro"
 }
 
-variable "allocated_storage" {
-  description = "The allocated storage in GB for the RDS instance"
-  type        = number
-  default     = 20
-}
+
 
 variable "vpc_id" {
   description = "The ID of the VPC where RDS will be deployed"

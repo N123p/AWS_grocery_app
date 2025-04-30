@@ -2,7 +2,6 @@ resource "aws_db_instance" "rds" {
   identifier             = var.db_identifier
   snapshot_identifier    = var.snapshot_id
   instance_class         = var.instance_class
-  allocated_storage      = var.allocated_storage
   storage_type           = var.storage_type
   engine                 = var.engine
   engine_version         = var.engine_version

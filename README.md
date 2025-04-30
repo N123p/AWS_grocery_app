@@ -29,6 +29,11 @@
 
 This project is part of the Cloud Track in our Software Engineering bootcamp at Masterschool. The application was originally developed by Alejandro Román, our Track Mentor (A big Thanks to him!). Our task was to design and deploy its AWS infrastructure step by step, implementing each component individually.
 
+GroceryMate is an application developed as part of the Masterschools program by Alejandro Roman Ibanez. It is a modern, full-featured e-commerce platform designed for seamless online grocery shopping. It provides an intuitive user interface and a secure backend, allowing users to browse products, manage their shopping basket, and complete purchases efficiently.
+
+GroceryMate is a modern, full-featured e-commerce platform designed for seamless online grocery shopping. It provides an intuitive user interface and a secure backend, allowing users to browse products, manage their shopping basket, and complete purchases efficiently.
+
+
 
  ### 🌐 AWS Services Used:
 - 🖥️ **EC2 Instance**: Deployed virtual servers to run the application.
@@ -48,24 +53,43 @@ For details about the application's features, functionality, and local installat
 ---
 ## 📌 Architectural Design Rationale:
 
-### 🖥️ **Amazon EC2 (Elastic Compute Cloud):**
-   - Chosen over alternatives like App Runner, Lambda, and ECS for
-   - Full control over the operating system, networking, and runtime environment.
-   - Simplified deployment suitable for early-stage infrastructure learners.
+## 🧠 Architecture & Tooling Decisions
 
-### 🌐 **Application Load Balancer (ALB):**
-   - Implemented for Storing static files like images and assets in a scalable, durable, and cost-effective way.
+### 🖥️ Amazon EC2 (Elastic Compute Cloud)
+- **Why EC2?**  
+  EC2 was selected for full control over the OS, networking, and runtime—essential for learning infrastructure at a granular level. It allows SSH access, custom AMI usage, and fine-grained provisioning control.
+- **Why not App Runner, Lambda, or ECS?**  
+  These services abstract away too much for foundational infrastructure education. Lambda limits runtime flexibility, ECS adds orchestration complexity, and App Runner is optimized for containerized workloads without hands-on control.
 
-### 💾 **Amazon RDS (Relational Database Service):**
-   - Selected instead of DynamoDB or Aurora Serverless because:
-   - The application relies on a relational schema with structured relationships.
-   - RDS offers automated backups, encryption, and multi-AZ failover with minimal operational overhead.
+---
 
-### 🗂️ **Amazon S3 (Simple Storage Service):**
-   - Amazon S3 was used for static asset storage, ensuring cost-effective, durable, and highly available object storage.
+### 🌐 Application Load Balancer (ALB)
+- **Why ALB?**  
+  ALB enables dynamic routing and health checks for multiple EC2 instances, supporting high availability and auto-scaling. It integrates easily with ASGs and provides rich metrics.
 
-### ⚙️ **Terraform (Infrastructure as Code):**
-   - Terraform was adopted as the Infrastructure as Code (IaC) tool to provision and manage cloud infrastructure in a scalable, automated, and version-controlled manner.
+---
+
+### 💾 Amazon RDS (Relational Database Service)
+- **Why RDS?**  
+  RDS was chosen to host a PostgreSQL database due to the application's reliance on a **relational data model with multiple interrelated tables** (e.g., users, products, orders). It ensures data integrity, supports complex SQL queries, and enables structured relationships across entities.
+- **Why not DynamoDB or Aurora Serverless?**  
+  DynamoDB lacks relational joins and is optimized for key-value and document access patterns—not suitable for this schema-heavy workload. Aurora Serverless adds dynamic complexity and may be overkill for early-stage deployments with predictable traffic.
+
+---
+
+### 🗂️ Amazon S3 (Simple Storage Service)
+- **Why S3?**  
+  Used for storing static assets like product images—it's durable, scalable, and cost-effective. It integrates seamlessly with other AWS services and supports lifecycle policies and versioning.
+- **Why not EFS or EBS?**  
+  Those are better for block-level or POSIX file systems—not object storage.
+
+---
+
+### ⚙️ Terraform (Infrastructure as Code)
+- **Why Terraform?**  
+  Terraform was selected for its provider-agnostic design, robust AWS module ecosystem, and remote state capabilities. It ensures reproducible, version-controlled deployments across environments.
+- **Why not AWS CloudFormation or Pulumi?**  
+  CloudFormation is AWS-only and has a steeper learning curve. Pulumi requires a general-purpose language like TypeScript or Python, which introduces extra complexity for infrastructure beginners. structure in a scalable, automated, and version-controlled manner.
 
 ---
 ## 4. ⚙️ Terraform Configuration Overview:
@@ -92,106 +116,70 @@ terraform/
 ## 5. 🏗️ Infrastructure Components:
 
 ### 🌐 VPC Module
-
-- **📁 Location:** `modules/vpc`  
+ 
 - **📝 Description:**  
   Defines the **Virtual Private Cloud (VPC)** and associated networking resources including subnets, internet gateway, and route tables. This sets up the foundational network layer for your AWS infrastructure.
 
-- **🔑 Key Terraform Resources:**
-  - `aws_vpc`
-  - `aws_subnet`
-  - `aws_internet_gateway`
-  - `aws_route_table`
-  - `aws_route_table_association`
+
 ---
 
 ### 🛡️ Security Groups
 
-- **📁 Location:** `modules/security_groups`
 
 - **📝 Description:**
   Creates security groups for EC2, RDS, and ALB to control inbound/outbound traffic.
 
-- **🔑 Key Terraform Resources:**
 
-   - `aws_security_group`
-   - `aws_security_group_rule`
 
 ---
 ###  🖥️ EC2 Launch Template
 
-- **📁 Location:** `ec2_launch_template`  
 - **📝 Description:**  
   Configures EC2 launch template with AMI, instance type, and user data script.
 
 
-- **🔑 Key Terraform Resources:**
-  - `aws_launch_template`
-  - `aws_autoscaling_group`
 
 ---
 ###  🌐 Application Load Balancer (ALB)
 
-- **📁 Location:** `modules/alb`  
 - **📝 Description:**  
   Sets up an ALB to distribute traffic across EC2 instances.
 
 
-- **🔑 Key Terraform Resources:**
-  - `aws_lb`
-  - `aws_lb_target_group`
-  - `aws_lb_listener`
 
 ---
 ###  💾 RDS
 
-- **📁 Location:** `modules/rds`  
 - **📝 Description:**  
   Sets up an ALB to distribute traffic across EC2 instances.
 
-
-- **🔑 Key Terraform Resources:**
-  - `aws_db_instance`
-  - `aws_db_subnet_group`
+  
 ---
 
 ###  💾 S3 Bucket
 
-- **📁 Location:** `modules/s3_bucket`  
 - **📝 Description:**  
   Sets up an ALB to distribute traffic across EC2 instances.
 
 
-- **🔑 Key Terraform Resources:**
-  - `aws_s3_bucket`
-  - `aws_db_subnet_group`
+
 ---
 ###  🔐 IAM Roles for EC2
 
-- **📁 Location:** `modules/iam_roles_ec2`  
 - **📝 Description:**  
   Creates an IAM role and instance profile for EC2 instances, granting them permissions to access a specific S3 bucket or folder path within the bucket.
 
 
-- **🔑 Key Terraform Resources:**
-  - `aws_iam_role`
-  - `aws_iam_policy`
-  - `aws_iam_role_policy_attachment`
-  - `aws_iam_instance_profile`
 ---
 ### 🔐 AWS Secrets Manager
 
-- **📁 Location:** `modules/aws_secrets_manager`  
 - **📝 Description:**  
   Manages sensitive data like database credentials or API keys securely using AWS Secrets Manager. This module creates and stores secrets, allowing secure access by applications or services without hardcoding sensitive values.
-- - **🔑 Key Terraform Resources:**
-  - `aws_secretsmanager_secret`
-  - `aws_secretsmanager_secret_version`
+
 
 ---
 ###  ⚙️ Root Module
 
-- **📁 Location:** `Root directory (main.tf, variables.tf, outputs.tf, terraform.tfvars)`  
 - **📝 Description:**  
   Integrates all individual modules and manages global variables, outputs, and backend config.
 -  **Purpose:**
@@ -203,7 +191,6 @@ terraform/
 
 ### 🌐 VPC Module  and Subnets
 
-- **📁 Location:** `modules/vpc`  
 - **📝 Description:**  
   Custom VPC design isolates public-facing and private resources:
    - Public subnets host the Application Load Balancer (ALB) to handle inbound traffic.
@@ -212,7 +199,6 @@ terraform/
 
 ### 🛡️ Security Groups
 
-- **📁 Location:** `modules/security_groups`
 
 - **📝 Description:**
   Security groups act as virtual firewalls to regulate traffic:
@@ -224,7 +210,6 @@ terraform/
 
 ###  🔐 IAM Roles for EC2
 
-- **📁 Location:** `modules/iam_roles_ec2`  
 - **📝 Description:**  
   Defines scoped IAM roles granting EC2 instances secure, temporary permissions:
   - Enables controlled access to AWS services such as S3.
@@ -233,7 +218,6 @@ terraform/
 ---
 ### 🔐 AWS Secrets Manager
 
-- **📁 Location:** `modules/aws_secrets_manager`  
 - **📝 Description:**  
   Manages sensitive data like database credentials securely:
   - Applications retrieve secrets programmatically at runtime.

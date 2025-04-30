@@ -14,10 +14,7 @@ variable "instance_class" {
   type        = string
 }
 
-variable "allocated_storage" {
-  description = "The allocated storage in gigabytes"
-  type        = number
-}
+
 
 variable "storage_type" {
   description = "The type of storage to use (e.g., gp2, io1)"

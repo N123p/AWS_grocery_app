@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 5.0"
+    }
+  }
+}
+
 provider "aws" {
 
   region = var.region
@@ -48,7 +57,6 @@ module "rds" {
   source                 = "./modules/rds"
   db_identifier          = "grocery-db"
   instance_class         = "db.t3.micro"
-  allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "postgres"
   engine_version         = "17.4"
