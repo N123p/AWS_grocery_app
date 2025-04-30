@@ -48,8 +48,9 @@ For details about the application's features, functionality, and local installat
 ---
 
  ### 2. 🖼️ Architecture Diagram:
-  ![img_1.png](img_1.png)
-  ![img.png](img.png)
+  ![img_3.png](img_3.png)
+  ![img_4.png](img_4.png)
+  
 ---
 ## 📌 Architectural Design Rationale:
 
