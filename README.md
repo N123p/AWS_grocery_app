@@ -54,6 +54,7 @@ For details about the application's features, functionality, and local installat
 
 
 
+
   
 ---
 ## 📌 Architectural Design Rationale:
