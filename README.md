@@ -49,7 +49,8 @@ For details about the application's features, functionality, and local installat
 
  ### 2. 🖼️ Architecture Diagram:
   ![img_3.png](img_3.png)
-  <img src="https://raw.githubusercontent.com/N123p/AWS_grocery_app/main/img_4.png" width="500"/>
+  <img src="https://raw.githubusercontent.com/N123p/AWS_grocery_app/main/img.png" width="500"/>
+
 
   
 ---
