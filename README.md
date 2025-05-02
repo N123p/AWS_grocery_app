@@ -408,7 +408,6 @@ Follow these steps to clone the repository and deploy the Grocery App on AWS:
 | **Terraform** | Infrastructure as Code (IaC) tool to provision cloud resources automatically. |
 | **GitHub Actions** | CI/CD tool built into GitHub to automate workflows such as deployments. |
 | **S3** | AWS Simple Storage Service, used for storing objects like Terraform state files. |
-| **DynamoDB** | Managed NoSQL database by AWS, used here for Terraform state locking. |
 | **IAM** | Identity and Access Management service in AWS to control user access and roles. |
 | **EC2** | Elastic Compute Cloud — Virtual servers for running applications. |
 | **ALB** | Application Load Balancer — Distributes incoming application traffic across multiple targets. |
